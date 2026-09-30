@@ -1,0 +1,114 @@
+# ==============================================================================
+# KRX ETF EDA Dashboard - .gitignore
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Python & uv Virtual Environments
+# ------------------------------------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+.uv/
+uv.lock.bak
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Pytest & testing caches
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# ------------------------------------------------------------------------------
+# Temporary Test & User Export Files
+# ------------------------------------------------------------------------------
+test_*.json
+test_*.txt
+*.tmp
+*.temp
+scratch/
+
+# User-exported CSVs from Dashboard
+*.csv
+!data/*.csv
+
+# ------------------------------------------------------------------------------
+# Logs & Runtime
+# ------------------------------------------------------------------------------
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ------------------------------------------------------------------------------
+# Environment Variables & Secrets
+# ------------------------------------------------------------------------------
+.env
+.env.local
+.env.*.local
+
+# ------------------------------------------------------------------------------
+# Node & Frontend Tooling (If used)
+# ------------------------------------------------------------------------------
+node_modules/
+.npm/
+
+# ------------------------------------------------------------------------------
+# IDE & Code Editors
+# ------------------------------------------------------------------------------
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+.cursor/
+
+# ------------------------------------------------------------------------------
+# Operating System Files
+# ------------------------------------------------------------------------------
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# ------------------------------------------------------------------------------
+# Data Notes
+# ------------------------------------------------------------------------------
+# Note: data/etfs.json and data/etfs_data.js are tracked for GitHub Pages
+# static site deployment. Do NOT ignore them.

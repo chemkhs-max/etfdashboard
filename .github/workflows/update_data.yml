@@ -1,0 +1,54 @@
+name: Update KRX ETF Data and Deploy to GitHub Pages
+
+on:
+  schedule:
+    # Runs Monday to Friday at 16:30 KST (07:30 UTC), after KRX market closes
+    - cron: '30 7 * * 1-5'
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  update-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Fetch Latest KRX ETF Data
+        run: uv run python fetch_data.py
+
+      - name: Commit and Push Updated Data
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/etfs.json data/etfs_data.js
+          git diff --staged --quiet || git commit -m "Auto-update ETF dataset [skip ci]"
+          git push || echo "No changes to commit"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
